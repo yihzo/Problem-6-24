@@ -1,0 +1,3 @@
+//This function requests and returns: Taxi fees, if a taxi was used anytime during the trip (The company allows up to
+//$10 per day, for each day a taxi was used. Anything in excess of this must be paid by the employee)
+//Remember to properly return your values and assign appropriate parameters.
