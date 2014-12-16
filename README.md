@@ -1,13 +1,14 @@
+DO NOT MAKE ANY CHANGES IN THE MASTER BRANCH! MASTER WILL ONLY BE USED AS PRESERVING THE LATEST WORKING ITERATION OF THE FUNCTION. USE THE WORKBENCHES TO CREATE AND EDIT YOUR CODE AND REQUEST A PULL WHEN YOU FEEL CONFIDENT IN THE FUNCTIONABILITY OF THE CODE.
+- 
+
 -Rumia:
--  int main(), Final Function
--  
+int main(), Final Function
+
 -Atsina:
--  Functions 1, 2, 8
--  
+Functions 1, 2, 8
+ 
 -Satinder:
--  Functions 5, 7, 9
--  
+Functions 5, 7, 9
+ 
 -Daniel:
--  Functions 3, 4, 6
--  
--guys do your flipping work
+Functions 3, 4, 6
