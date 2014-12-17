@@ -1,1 +1,67 @@
 //All preprocessor directives will be located here. If your function requires it, comment it out for later use in int main().
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int days, //days spent on the trip
+        departureHours, departureMinutes, //used to dim the time departed on the first day
+        arrivalHours, arrivalMinutes, //used to dim the time arrived at home on the final day
+        carRentals; //amount of car rentals
+
+    double  milesDriven, //miles driven if a private vehicle was used
+            roundTrips, //amount of any round-trip airfare, whatever that is
+            parkingFees, //fees for parking
+            taxiFees, //fees for taxiing
+            regFees, //conference/seminar registration fees
+            hotelExpenses, //expenses for lodging
+            mealCosts, //costs for each meal eaten, in total
+            breakfast, //goat value
+            lunch, //goat value
+            dinner,  //goat value
+            permissibleExpenses, //allowed expenses per day
+            finalCost; //final value
+
+    /*bool  vehicleIsPrivate, //checks if the current vehicle is privately owned
+            taxiIsUsed, //checks if a taxi was used at all*/
+            //unneeded, can be called in respective functions
+
+    //here goes nothing
+
+    days = FUNCT1(); //temp name, to be replaced by atsina's function 1
+
+    //funct2 goes here, no clue how to work it right now; todo
+
+    roundTrips = FUNCT3(); //temp name, to be replaced by daniel's function 3
+
+    carRentals = FUNCT4(); //temp name, to be replaced by daniel's function 4
+
+    if (carRentals > 0)
+        milesDriven = FUNCT5(carRentals); //temp name, to be replaced by satinder's function 5
+
+    parkingFees = FUNCT6(days); //temp name, to be replaced by daniel's function 6
+
+    taxiFees = FUNCT7(days); //temp name, to be replaced by satinder's function 7
+
+    regFees = FUNCT8(); //temp name, to be replaced by atsina's function 8
+
+    hotelExpenses = FUNCT9(days); //temp name, to be replaced by satinder's function 9
+
+    mealCosts = FUNCT10(departureHours, arrivalHours, days); //temp name, to be replaced by rumia's function 10
+
+    finalCost = (roundTrips + /*carRentals*/ + milesDriven + parkingFees + taxiFees + regFees + hotelExpenses + mealCosts);
+    cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
+    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"
+    if (finalCost < permissibleExpenses)
+    {
+        cout << "All expenses were covered by the company.\n";
+    }
+    else
+    {
+        cout << "You went over the permissible expenses by $" << setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";
+    }
+
+    return 0;
+}
