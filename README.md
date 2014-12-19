@@ -3,6 +3,8 @@ DO NOT MAKE ANY CHANGES IN THE MASTER BRANCH! MASTER WILL ONLY BE USED AS PRESER
 UNAUTHORIZED CHANGES IN THE MASTER BRANCH WILL BE REVERTED.
 - 
 
+If you have any issues, create an Issue and I will help you.
+
 -Rumia:
 int main(), Final Function
 
