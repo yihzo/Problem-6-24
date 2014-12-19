@@ -2,28 +2,28 @@
 
 using namespace std;
 
-int main()
+//int main()
+int meals(int departHour, int arriveHour)
 //This function should request "departurehours, arrivalhours, and days" as parameters.
-///int meals(int departHour, int arriveHour, int day)
 //They will be substituted with local variables, named accordingly.
 {
-    int departHour, arriveHour, day;
+    int departHour, arriveHour;
     double breakfast, lunch, dinner;
-    cout << "all times should be in military time for debugging purposes\n";
-    cout << "goat: input departHour, arriveHour, and day, separate by spaces: ";
-    cin >> departHour >> arriveHour >> day;
+    //cout << "all times should be in military time for debugging purposes\n";
+    //cout << "goat: input departHour, arriveHour, and day, separate by spaces: ";
+    //cin >> departHour >> arriveHour >> day;
 
-    cout << "goat: breakfast is only allowed as an expense if departure < 7 am (<0700)\n";
-    cout << "goat: lunch allowed on the first day if departure < 12 noon (<1200)\n";
-    cout << "goat: dinner allowed on the first day if departure < 6 pm (<1800)\n";
+    //cout << "goat: breakfast is only allowed as an expense if departure < 7 am (<0700)\n";
+    //cout << "goat: lunch allowed on the first day if departure < 12 noon (<1200)\n";
+    //cout << "goat: dinner allowed on the first day if departure < 6 pm (<1800)\n";
 
-    cout << "goat: final day: breakfast only allowed if arrival > 8 am (>0800)\n";
-    cout << "goat: final day: lunch only allowed if arrival > 1 pm (>1300)\n";
-    cout << "goat: final day: dinner only allowed if arrival > 7 pm (>1900)\n";
-    cout << "goat: only request valid meals\n";
-    cout << "goat: company allows $9 for berakfast, $12 for lunch, $16 for dinner\n";
+    //cout << "goat: final day: breakfast only allowed if arrival > 8 am (>0800)\n";
+    //cout << "goat: final day: lunch only allowed if arrival > 1 pm (>1300)\n";
+    //cout << "goat: final day: dinner only allowed if arrival > 7 pm (>1900)\n";
+    //cout << "goat: only request valid meals\n";
+    //cout << "goat: company allows $9 for berakfast, $12 for lunch, $16 for dinner\n";
 
-    cout << "\n" << "goat: you input " << departHour << " " << arriveHour << " " << day << "\n";
+    //cout << "\n" << "goat: you input " << departHour << " " << arriveHour << " " << day << "\n";
 
     double pricebuffer;
     breakfast = 0;
