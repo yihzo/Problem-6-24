@@ -18,9 +18,6 @@ int main()
             regFees, //conference/seminar registration fees
             hotelExpenses, //expenses for lodging
             mealCosts, //costs for each meal eaten, in total
-            breakfast, //goat value
-            lunch, //goat value
-            dinner,  //goat value
             permissibleExpenses, //allowed expenses per day
             finalCost; //final value
 
@@ -35,8 +32,8 @@ int main()
     //funct2 goes here, no clue how to work it right now; todo
     //i think i got it
     
-    departure = FUNCT2a();
-    arrival = FUNCT2b();
+    departure = FUNCT2(0); //basically two functs in one, use an if statement
+    arrival = FUNCT2(1); //temp name, to be replaced by atsina's function 2
 
     roundTrips = FUNCT3(); //temp name, to be replaced by daniel's function 3
 
@@ -53,20 +50,16 @@ int main()
 
     hotelExpenses = FUNCT9(days); //temp name, to be replaced by satinder's function 9
 
-    mealCosts = FUNCT10(departure, arrival); //temp name, to be replaced by rumia's function 10
+    mealCosts = meals(departure, arrival); //funct finalized
 
     finalCost = (roundTrips + /*carRentals*/ + milesDriven + parkingFees + taxiFees + regFees + hotelExpenses + mealCosts);
     
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
     cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"
-    if (finalCost < permissibleExpenses)
-    {
-        cout << "All expenses were covered by the company.\n";
-    }
-    else
-    {
-        cout << "You went over the permissible expenses by $" << setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";
-    }
+    if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n";}
+    
+    else{cout << "You went over the permissible expenses by $" << 
+    setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";}
 
     return 0;
 }
