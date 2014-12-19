@@ -1,0 +1,164 @@
+//The finalized product. Functs will be added accordingly.
+//All preprocessor directives will be located here. If your function requires it, comment it out for later use in int main().
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+{
+    int days, //days spent on the trip
+        departure; //used to dim the time departed on the first day, military time
+        arrival; //used to dim the time arrived at home on the final day, military time
+        carRentals; //amount of car rentals
+
+    double  milesDriven, //miles driven if a private vehicle was used
+            roundTrips, //amount of any round-trip airfare, whatever that is
+            parkingFees, //fees for parking
+            taxiFees, //fees for taxiing
+            regFees, //conference/seminar registration fees
+            hotelExpenses, //expenses for lodging
+            mealCosts, //costs for each meal eaten, in total
+            permissibleExpenses, //allowed expenses per day
+            finalCost; //final value
+
+    days = FUNCT1(); //temp name, to be replaced by atsina's function 1
+    
+    departure = FUNCT2(0); //basically two functs in one, use an if statement
+    arrival = FUNCT2(1); //temp name, to be replaced by atsina's function 2
+
+    roundTrips = FUNCT3(); //temp name, to be replaced by daniel's function 3
+
+    carRentals = FUNCT4(); //temp name, to be replaced by daniel's function 4
+
+    if (carRentals > 0)
+        milesDriven = FUNCT5(carRentals); //temp name, to be replaced by satinder's function 5
+
+    parkingFees = FUNCT6(days); //temp name, to be replaced by daniel's function 6
+
+    taxiFees = FUNCT7(days); //temp name, to be replaced by satinder's function 7
+
+    regFees = FUNCT8(); //temp name, to be replaced by atsina's function 8
+
+    hotelExpenses = FUNCT9(days); //temp name, to be replaced by satinder's function 9
+
+    mealCosts = meals(departure, arrival); //funct finalized
+
+    finalCost = (roundTrips + /*carRentals*/ + milesDriven + parkingFees + taxiFees + regFees + hotelExpenses + mealCosts);
+    
+    cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
+    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"
+    if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n";}
+    
+    else {cout << "You went over the permissible expenses by $" << 
+    setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";}
+
+    return 0;
+}
+
+double meals(int departHour, int arriveHour)
+{
+    int departHour, arriveHour;
+    double breakfast, lunch, dinner;
+    double pricebuffer;
+    breakfast = 0;
+    lunch = 0;
+    dinner = 0;
+    if (departHour < 700) //first day breakfast checker
+    {
+        cout << "How much was spent for breakfast on the first day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for breakfast on the first day?: $";
+            cin >> pricebuffer;
+        }
+        breakfast += pricebuffer;
+        pricebuffer = 0;
+    }
+
+    if (departHour < 1200) //first day lunch checker
+    {
+        cout << "How much was spent for lunch on the first day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for lunch on the first day?: $";
+            cin >> pricebuffer;
+        }
+        lunch += pricebuffer;
+        pricebuffer = 0;
+    }
+
+    if (departHour < 1800) //first day dinner checker
+    {
+        cout << "How much was spent for dinner on the first day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for dinner on the first day?: $";
+            cin >> pricebuffer;
+        }
+        dinner += pricebuffer;
+        pricebuffer = 0;
+    }
+    
+////////////////////////////////////////////////////////////////////////////
+
+    if (arriveHour > 800) //last day breakfast checker
+    {
+        cout << "How much was spent for breakfast on the last day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for breakfast on the last day?: $";
+            cin >> pricebuffer;
+        }
+        breakfast += pricebuffer;
+        pricebuffer = 0;
+    }
+
+    if (arriveHour > 1300) //last day lunch checker
+    {
+        cout << "How much was spent for lunch on the last day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for lunch on the last day?: $";
+            cin >> pricebuffer;
+        }
+        lunch += pricebuffer;
+        pricebuffer = 0;
+    }
+
+    if (arriveHour > 1900) //last day dinner checker
+    {
+        cout << "How much was spent for dinner on the last day?: $";
+        cin >> pricebuffer;
+        while (pricebuffer < 0)
+        {
+            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
+            cout << "How much was spent for dinner on the last day?: $";
+            cin >> pricebuffer;
+        }
+        dinner += pricebuffer;
+        pricebuffer = 0;
+    }
+
+    if (breakfast <= 9) {breakfast = 0;}
+    else {breakfast -= 9;}
+
+    if (lunch <= 12) {lunch = 0;}
+    else {lunch -= 12;}
+
+    if (dinner <= 16) {dinner = 0;}
+    else {dinner -= 16;}
+
+    pricebuffer = (breakfast + lunch + dinner);
+    return pricebuffer;
+}
