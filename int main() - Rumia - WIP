@@ -7,8 +7,8 @@ using namespace std;
 int main()
 {
     int days, //days spent on the trip
-        departureHours, departureMinutes, //used to dim the time departed on the first day
-        arrivalHours, arrivalMinutes, //used to dim the time arrived at home on the final day
+        departure; //used to dim the time departed on the first day, military time
+        arrivalHours; //used to dim the time arrived at home on the final day, military time
         carRentals; //amount of car rentals
 
     double  milesDriven, //miles driven if a private vehicle was used
@@ -49,9 +49,10 @@ int main()
 
     hotelExpenses = FUNCT9(days); //temp name, to be replaced by satinder's function 9
 
-    mealCosts = FUNCT10(departureHours, arrivalHours, days); //temp name, to be replaced by rumia's function 10
+    mealCosts = FUNCT10(departure, arrival, days); //temp name, to be replaced by rumia's function 10
 
     finalCost = (roundTrips + /*carRentals*/ + milesDriven + parkingFees + taxiFees + regFees + hotelExpenses + mealCosts);
+    
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
     cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"
     if (finalCost < permissibleExpenses)
