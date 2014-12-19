@@ -1,30 +1,10 @@
 #include <iostream>
-
 using namespace std;
 
-//int main()
 int meals(int departHour, int arriveHour)
-//This function should request "departurehours, arrivalhours, and days" as parameters.
-//They will be substituted with local variables, named accordingly.
 {
     int departHour, arriveHour;
     double breakfast, lunch, dinner;
-    //cout << "all times should be in military time for debugging purposes\n";
-    //cout << "goat: input departHour, arriveHour, and day, separate by spaces: ";
-    //cin >> departHour >> arriveHour >> day;
-
-    //cout << "goat: breakfast is only allowed as an expense if departure < 7 am (<0700)\n";
-    //cout << "goat: lunch allowed on the first day if departure < 12 noon (<1200)\n";
-    //cout << "goat: dinner allowed on the first day if departure < 6 pm (<1800)\n";
-
-    //cout << "goat: final day: breakfast only allowed if arrival > 8 am (>0800)\n";
-    //cout << "goat: final day: lunch only allowed if arrival > 1 pm (>1300)\n";
-    //cout << "goat: final day: dinner only allowed if arrival > 7 pm (>1900)\n";
-    //cout << "goat: only request valid meals\n";
-    //cout << "goat: company allows $9 for berakfast, $12 for lunch, $16 for dinner\n";
-
-    //cout << "\n" << "goat: you input " << departHour << " " << arriveHour << " " << day << "\n";
-
     double pricebuffer;
     breakfast = 0;
     lunch = 0;
@@ -70,6 +50,8 @@ int meals(int departHour, int arriveHour)
         dinner += pricebuffer;
         pricebuffer = 0;
     }
+    
+////////////////////////////////////////////////////////////////////////////
 
     if (arriveHour > 800) //last day breakfast checker
     {
@@ -122,9 +104,29 @@ int meals(int departHour, int arriveHour)
     if (dinner <= 16) {dinner = 0;}
     else {dinner -= 16;}
 
+    pricebuffer = (breakfast + lunch + dinner);
+    return pricebuffer;
+}
 
-    cout << "goat: b l d " << breakfast << " " << lunch <<  " "  << dinner << "\n";
+void goats() //commented out values for archival purposes
+{
+    //int main()
+    //This function should request "departurehours, arrivalhours, and days" as parameters.
+    //They will be substituted with local variables, named accordingly.
+    //cout << "all times should be in military time for debugging purposes\n";
+    //cout << "goat: input departHour, arriveHour, and day, separate by spaces: ";
+    //cin >> departHour >> arriveHour >> day;
 
+    //cout << "goat: breakfast is only allowed as an expense if departure < 7 am (<0700)\n";
+    //cout << "goat: lunch allowed on the first day if departure < 12 noon (<1200)\n";
+    //cout << "goat: dinner allowed on the first day if departure < 6 pm (<1800)\n";
 
-    return 0;
+    //cout << "goat: final day: breakfast only allowed if arrival > 8 am (>0800)\n";
+    //cout << "goat: final day: lunch only allowed if arrival > 1 pm (>1300)\n";
+    //cout << "goat: final day: dinner only allowed if arrival > 7 pm (>1900)\n";
+    //cout << "goat: only request valid meals\n";
+    //cout << "goat: company allows $9 for berakfast, $12 for lunch, $16 for dinner\n";
+
+    //cout << "\n" << "goat: you input " << departHour << " " << arriveHour << " " << day << "\n";
+    //cout << "goat: b l d " << breakfast << " " << lunch <<  " "  << dinner << "\n";
 }
