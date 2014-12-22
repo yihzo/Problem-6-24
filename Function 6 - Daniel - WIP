@@ -1,2 +1,28 @@
 //This function requests and returns: Parking fees (The company allows up to $6 per day. Anything in excess of this must be paid by the employee.
 //Remember to properly return your values and assign appropriate parameters.
+
+#include <iostream>
+
+using namespace std;
+
+double parkingFees(int days)
+{
+    double parking = 0.00; //money spent today
+    double parkingTotal = 0.00; //money spent in total
+    double moneyPermissible = 10.00; //money allowed by the company
+    for (i = 1; i <= days; i++)
+        {
+            parking = 0.00; //clear parking
+            cout << "How much money was spent for parking on day " << i << "?: $";
+            cin >> parking;
+            while (parking < 0)
+                {
+                    cout << "Invalid input. Please input a number greater than 0: $";
+                    cin >> parking;
+                }
+            parking -= moneyPermissible;
+            if (parking < 0) {parking = 0;}
+            parkingTotal += parking;
+        }
+    return parkingTotal;
+}
