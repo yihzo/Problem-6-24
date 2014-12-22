@@ -1,2 +1,43 @@
 //This function requests and returns: Time of departure on the first day, time of arrival at home on the final day
 //Remember to properly return your values and assign appropriate parameters.
+
+#include <iostream>
+
+using namespace std;
+
+int times(int departOrArrive)
+{
+    int timething;
+    if (departOrArive == 0) //departure check
+    {
+        cout << "What time did you depart on the first day? Please input the time like " <<
+        cout << "military time: ";
+        cin >> timething;
+        while (timething < 0 || timething > 2359)
+        {
+            cout << "Invalid time. Please input a time between 0 and 2359: "
+            cin >> timething;
+        }
+        return timething;
+    }
+    
+    else if (departOrArive == 1) //arrive check
+    {
+        cout << "What time did you arrive home on the last day? Please input the time " <<
+        cout << "like military time: ";
+        cin >> timething;
+        while (timething < 0 || timething > 2359)
+        {
+            cout << "Invalid time. Please input a time between 0 and 2359: "
+            cin >> timething;
+        }
+        return timething;
+    }
+    
+    else
+    {
+        cout << "How did you get here and why? Are you trying to break me?";
+        return 0;
+    }
+}
+        
