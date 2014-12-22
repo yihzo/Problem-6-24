@@ -7,13 +7,13 @@ using namespace std;
 
 int times(int departOrArrive)
 {
-    int timething;
+    int timething; //used for time
     if (departOrArive == 0) //departure check
     {
         cout << "What time did you depart on the first day? Please input the time like " <<
-        cout << "military time: ";
-        cin >> timething;
-        while (timething < 0 || timething > 2359)
+        cout << "military time: "; //sorry but i had no other idea on how to make this work
+        cin >> timething; //request timething
+        while (timething < 0 || timething > 2359) //if time is not exist
         {
             cout << "Invalid time. Please input a time between 0 and 2359: "
             cin >> timething;
@@ -25,8 +25,8 @@ int times(int departOrArrive)
     {
         cout << "What time did you arrive home on the last day? Please input the time " <<
         cout << "like military time: ";
-        cin >> timething;
-        while (timething < 0 || timething > 2359)
+        cin >> timething; //request timething
+        while (timething < 0 || timething > 2359) //if time is not exist
         {
             cout << "Invalid time. Please input a time between 0 and 2359: "
             cin >> timething;
@@ -36,7 +36,7 @@ int times(int departOrArrive)
     
     else
     {
-        cout << "How did you get here and why? Are you trying to break me?";
+        cout << "How did you get here and why? Are you trying to break me?"; //error handler
         return 0;
     }
 }
