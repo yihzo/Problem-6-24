@@ -10,9 +10,9 @@ using namespace std;
 double taxiFees(int days)
 {
     char taxiBool; //used in a cin check
-    double moneySpent = 0; //total money spent
+    double moneySpent = 0.00; //total money spent
     double moneyPermissible = 10.00; //money allowed by the company
-    double moneySpentToday = 0; //goat value
+    double moneySpentToday = 0.00; //goat value
     cout << "Did you use a taxi during the trip? Y/N: ";
     cin >> taxiBool;
     taxiBool = toupper(taxiBool);
@@ -44,14 +44,14 @@ double taxiFees(int days)
                 {
                     cout << "How much?: $";
                     cin >> moneySpentToday;
-                    while (moneySpentToday <= 0)
+                    while (moneySpentToday <= 0.00)
                     {
-                        cout << "Invalid input. Please input a number greater than 0: ";
+                        cout << "Invalid input. Please input a number greater than 0: $";
                         cin >> moneySpentToday;
                     }
                 }
                 moneySpentToday -= moneyPermissible;
-                if (moneySpentToday < 0) {moneySpentToday = 0;}
+                if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
                 moneySpent += moneySpentToday;
             }
         
