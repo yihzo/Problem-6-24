@@ -1,0 +1,60 @@
+//This function requests and returns: Taxi fees, if a taxi was used anytime during the trip (The company allows up to
+//$10 per day, for each day a taxi was used. Anything in excess of this must be paid by the employee)
+//Remember to properly return your values and assign appropriate parameters.
+
+#include <iostream>
+#include <cctype>
+
+using namespace std;
+
+double taxiFees(int days);
+{
+    char taxiBool; //used in a cin check
+    double moneySpent = 0; //total money spent
+    double moneyPermissible = 10.00; //money allowed by the company
+    double moneySpentToday = 0; //goat value
+    cout << "Did you use a taxi during the trip? Y/N: ";
+    cin >> taxiBool;
+    taxiBool = toupper(taxiBool);
+    
+    while (taxiBool != 'Y' && taxiBool != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> taxiBool;
+        taxiBool = toupper(taxiBool);
+    }
+    
+    if (taxiBool == 'Y')
+    {
+        for (i = 1; i <= days; i++)
+            {
+                moneySpentToday = 0.00; //clear moneySpentToday
+                taxiBool = NULL; //clear taxiBool for later checks
+                cout << "Was a taxi used for day " << i << "? Y/N: ";
+                cin >> taxiBool;
+                taxiBool = toupper(taxiBool);
+                while (taxiBool != 'Y' && taxiBool != 'N')
+                {
+                    cout << "Invalid input. Please input Y or N: ";
+                    cin >> taxiBool;
+                    taxiBool = toupper(taxiBool);
+                }
+                
+                if (taxiBool == 'Y')
+                {
+                    cout << "How much?: $";
+                    cin >> moneySpentToday;
+                    while (moneySpentToday <= 0)
+                    {
+                        cout << "Invalid input. Please input a number greater than 0: ";
+                        cin >> moneySpentToday;
+                    }
+                }
+                moneySpent += moneySpentToday;
+            }
+        moneyPermissible *= days;
+        moneySpent -= moneyPermissible;
+        if (moneySpent < 0) {moneySpent = 0.00;}
+        
+        return moneySpent;
+  }
