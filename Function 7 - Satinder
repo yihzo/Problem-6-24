@@ -7,7 +7,7 @@
 
 using namespace std;
 
-double taxiFees(int days);
+double taxiFees(int days)
 {
     char taxiBool; //used in a cin check
     double moneySpent = 0; //total money spent
