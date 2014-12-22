@@ -50,11 +50,11 @@ double taxiFees(int days)
                         cin >> moneySpentToday;
                     }
                 }
+                moneySpentToday -= moneyPermissible;
+                if (moneySpentToday < 0) {moneySpentToday = 0;}
                 moneySpent += moneySpentToday;
             }
-        moneyPermissible *= days;
-        moneySpent -= moneyPermissible;
-        if (moneySpent < 0) {moneySpent = 0.00;}
         
-        return moneySpent;
   }
+  return moneySpent;
+}
