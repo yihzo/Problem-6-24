@@ -14,15 +14,15 @@ double parkingFees(int days)
         {
             parking = 0.00; //clear parking
             cout << "How much money was spent for parking on day " << i << "?: $";
-            cin >> parking;
+            cin >> parking; //request parking
             while (parking < 0)
                 {
                     cout << "Invalid input. Please input a number greater than 0: $";
                     cin >> parking;
                 }
-            parking -= moneyPermissible;
-            if (parking < 0) {parking = 0;}
-            parkingTotal += parking;
+            parking -= moneyPermissible; //subtract maximum money allowed
+            if (parking < 0) {parking = 0;} //reset to 0 if parking < moneypermissible
+            parkingTotal += parking; //add to the total
         }
     return parkingTotal;
 }
