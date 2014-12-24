@@ -15,6 +15,7 @@ int times(int departOrArrive)
         cout << "military time: "; //sorry but i had no other idea on how to make this work
         cin >> timething; //request timething
         othertimething = (time % 100);
+        
         while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist or invalid
         {
             cout << "Invalid time. Please input a valid time: "
@@ -29,6 +30,8 @@ int times(int departOrArrive)
         cout << "What time did you arrive home on the last day? Please input the time " <<
         cout << "like military time: ";
         cin >> timething; //request timething
+        othertimething = (time % 100);
+        
         while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist
         {
             cout << "Invalid time. Please input a valid time: "
