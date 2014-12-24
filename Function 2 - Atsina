@@ -8,15 +8,18 @@ using namespace std;
 int times(int departOrArrive)
 {
     int timething; //used for time
+    int othertimething; //used for time
     if (departOrArive == 0) //departure check
     {
         cout << "What time did you depart on the first day? Please input the time like " <<
         cout << "military time: "; //sorry but i had no other idea on how to make this work
         cin >> timething; //request timething
-        while (timething < 0 || timething > 2359) //if time is not exist
+        othertimething = (time % 100);
+        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist or invalid
         {
-            cout << "Invalid time. Please input a time between 0 and 2359: "
+            cout << "Invalid time. Please input a valid time: "
             cin >> timething;
+            othertimething = (time % 100);
         }
         return timething;
     }
@@ -26,10 +29,11 @@ int times(int departOrArrive)
         cout << "What time did you arrive home on the last day? Please input the time " <<
         cout << "like military time: ";
         cin >> timething; //request timething
-        while (timething < 0 || timething > 2359) //if time is not exist
+        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist
         {
-            cout << "Invalid time. Please input a time between 0 and 2359: "
+            cout << "Invalid time. Please input a valid time: "
             cin >> timething;
+            othertimething = (time % 100);
         }
         return timething;
     }
