@@ -54,7 +54,6 @@ double taxiFees(int days)
                 if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
                 moneySpent += moneySpentToday;
             }
-        
-  }
-  return moneySpent;
+    }
+    return moneySpent;
 }
