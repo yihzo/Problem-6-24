@@ -16,5 +16,5 @@ double airfareAmount(double airfareFee)
 
     }
 
-    return airfareFee; //Return air fare to int main
+    return airfareFee; //Return air fare to int main//
 }
