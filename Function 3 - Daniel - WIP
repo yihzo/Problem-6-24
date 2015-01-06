@@ -4,16 +4,17 @@
 
 using namespace std;
 
-double airfareAmount(double airfareFee)
+double airfareAmount() //please consult the int main() file when typing parameters
 {
-    cout << "Enter the total cost of the air fare:\n" ; //Ask user for total airfare//
-    cin >> airfareFee ;                     //save airfare in variable named airfareFee//
+    double airfareFee;
+    
+    cout << "Enter the total cost of the air fare: " ; //Ask user for total airfare//
+    cin >> airfareFee;                     //save airfare in variable named airfareFee//
 
     while (airfareFee < 0)              //Input validation
     {
-        cout "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0!\n" ;
+        cout "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0: " ;
         cin >> airfareFee ;
-
     }
 
     return airfareFee; //Return air fare to int main//
