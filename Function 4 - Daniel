@@ -1,0 +1,19 @@
+//This function requests and returns: The amount of any car rentals
+
+#include <iostream>
+
+using namespace std;
+
+double carRentalAmount ()                                     //please consult int main() when making parameter list//
+{
+  double carRentalFee;
+  cout << "Enter the total cost of any car rentals: $" ;           //ask user for all car rentals//
+  cin >> carRentalFee;                                              //save car rentals in carRentalFee//
+
+  while (carRentalFee < 0)                                          //Input validation//
+  {
+    cout << "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0: $" ;
+    cin >> carRentalFee;
+  }
+  return carRentalFee;                                            //return car rentals to int main//
+}
