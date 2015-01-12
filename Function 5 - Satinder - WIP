@@ -1,2 +1,42 @@
 //This function requests and returns: Miles driven, if a private vehicle was used. Calculate the vehicle expense as $0.27 per mile driven
 //Remember to properly return your values and assign appropriate parameters.
+
+//Function 5
+
+#include <iostream>
+
+using namespace std;
+
+int milesDriven()
+{
+    int miles;
+    double total;
+    const double MILES_PRICE = .27;
+
+
+    cout << "How many miles are driven?";
+    cin >> miles;
+
+    total = miles * MILES_PRICE;
+
+    return total;
+}
+
+
+int main()
+{
+    char responce;
+    int miles;
+    double total;
+
+
+    cout << "Did you use a private vehicle?(Y or N) ";
+    cin >> responce;
+
+    if (responce == "Y" || responce == "y")
+        {
+            milesDriven();
+        }
+    cout << "The total vehicle cost for " << miles << " miles driven is $" << total << endl;
+    return 0;
+}
