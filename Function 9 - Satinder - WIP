@@ -1,3 +1,40 @@
 //This function requests and returns: Hotel expenses (The company allows up to $90 per night for lodging. Anything
 //in excess of this must be paid by the employee)
 //Remember to properly return your values and assign appropriate parameters.
+
+//Function 9
+
+#include <iostream>
+
+using namespace std;
+
+int hotelExpenses()
+{
+    int numOfDays;
+    int total;
+    const int DAILY_PRICE = 90;
+
+    cout << "How many times days did you stay in the hotel?";
+    cin >> numOfDays;
+
+    total = numOfDays * DAILY_PRICE;
+    return total;
+}
+
+
+int main()
+{
+    char responce;
+    int total;
+
+
+    cout << "Did you stay in a hotel during your trip?(Y or N) ";
+    cin >> responce;
+
+    if (responce == "Y" || responce == "y")
+        {
+            hotelExpenses();
+        }
+    cout << "The total cost for hotel expenses is $" << total << endl;
+    return 0;
+}
