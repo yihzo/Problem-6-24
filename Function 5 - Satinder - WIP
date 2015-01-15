@@ -7,36 +7,32 @@
 
 using namespace std;
 
-int milesDriven()
+int milesDriven() //use only one funct
 {
-    int miles;
+    char responce;
+    double miles;
     double total;
     const double MILES_PRICE = .27;
 
-
-    cout << "How many miles are driven?";
-    cin >> miles;
-
-    total = miles * MILES_PRICE;
-
-    return total;
-}
-
-
-int main()
-{
-    char responce;
-    int miles;
-    double total;
-
-
-    cout << "Did you use a private vehicle?(Y or N) ";
+    cout << "Did you use a private vehicle? (Y or N): ";
     cin >> responce;
+    responce = toupper(responce);
+    
+    while (responce != 'Y' && responce != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> responce;
+        responce = toupper(responce);
+    }
 
-    if (responce == "Y" || responce == "y")
-        {
-            milesDriven();
-        }
-    cout << "The total vehicle cost for " << miles << " miles driven is $" << total << endl;
-    return 0;
+    if (responce == 'Y')
+    {
+        cout << "How many? :";
+        cin >> miles;
+        total = miles * MILES_PRICE;
+        return total;
+    }
+
+    else if (responce == 'N') {return 0;}
 }
+
