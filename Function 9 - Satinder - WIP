@@ -8,33 +8,40 @@
 
 using namespace std;
 
-int hotelExpenses()
-{
-    int numOfDays;
-    int total;
-    const int DAILY_PRICE = 90;
-
-    cout << "How many times days did you stay in the hotel?";
-    cin >> numOfDays;
-
-    total = numOfDays * DAILY_PRICE;
-    return total;
-}
-
-
-int main()
+int hotelExpenses() //use only one funct
 {
     char responce;
-    int total;
+    int numOfDays;
+    double dayCost;
+    double total;
+    const double DAILY_PRICE = 90.00;
 
-
-    cout << "Did you stay in a hotel during your trip?(Y or N) ";
+    cout << "Did you stay in a hotel during your trip? (Y or N): ";
     cin >> responce;
+    responce = toupper(responce);
+    
+    while (responce != 'Y' && responce != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> responce;
+        responce = toupper(responce);
+    }
 
-    if (responce == "Y" || responce == "y")
+    if (responce == 'Y')
+    {
+        cout << "How many times days did you stay in a hotel?";
+        cin >> numOfDays;
+    
+        for (int i = 1; i <= numOfDays; i++)
         {
-            hotelExpenses();
-        }
-    cout << "The total cost for hotel expenses is $" << total << endl;
-    return 0;
-}
+             dayCost = 0;
+             cout << "What were the hotel expenses for day " << i << "?: $";
+             cin >> dayCost;
+             if (dayCost <= DAILY_PRICE) dayCost = 0.00;
+             total += (dayCost - DAILY_PRICE);
+        return total;
+    }
+
+    else if (responce == 'N') {return 0;}
+
+}   
