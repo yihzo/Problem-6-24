@@ -13,7 +13,7 @@ using namespace std;
 /*6*/ double parkingFees(int);
 /*7*/ double taxiFees(int, int&);
 /*8*/ double registrations();
-/*9*/ double hotelExpenses(int);
+/*9*/ double hotelExpenses(int, int&);
 /*10*/double meals(int, int);
 
 int main()
@@ -23,7 +23,8 @@ int main()
         arrival = 0, //used to dim the time arrived at home on the final day, military time
         carRental = 0.; //amount of car rentals
 
-    int taxisUsed = 0;
+    int taxisUsed = 0,
+        hotelDays = 0;
 
     double  miles = 0.00, //miles driven if a private vehicle was used
             roundTrips = 0.00, //amount of any round-trip airfare, whatever that is
@@ -60,7 +61,7 @@ int main()
 
     regFees = registrations(); //temp name, to be replaced by atsina's function 8
 
-    hotelExpense = hotelExpenses(days); //temp name, to be replaced by satinder's function 9
+    hotelExpense = hotelExpenses(days, hotelDays); //temp name, to be replaced by satinder's function 9
 
     mealCosts = meals(departure, arrival); //funct finalized
 
@@ -76,7 +77,7 @@ int main()
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
     cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n";
     if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n" <<
-        "You could have saved a maximum of $" << permissibleExpenses << "!\n";}
+        "You saved $" << (permissibleExpenses - finalCost) << "!\n";}
 
     else {cout << "You went over the permissible expenses by $" <<
     setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";}
@@ -216,8 +217,8 @@ double parkingFees(int days)
                     cout << "Invalid input. Please input a number greater than 0: $";
                     cin >> parking;
                 }
-            parking -= moneyPermissible; //subtract maximum money allowed
-            if (parking < 0) {parking = 0;} //reset to 0 if parking < moneypermissible
+//            parking -= moneyPermissible; //subtract maximum money allowed
+//            if (parking < 0) {parking = 0;} //reset to 0 if parking < moneypermissible
             parkingTotal += parking; //add to the total
         }
     return parkingTotal;
@@ -267,8 +268,8 @@ double taxiFees(int days, int &taxisUsed)
                         cin >> moneySpentToday;
                     }
                 }
-                moneySpentToday -= moneyPermissible;
-                if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
+//                moneySpentToday -= moneyPermissible;
+//                if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
                 moneySpent += moneySpentToday;
             }
     }
@@ -290,7 +291,7 @@ double registrations()
     return fees;
 }
 
-double hotelExpenses(int days) //use only one funct
+double hotelExpenses(int days, int &hotelDays) //use only one funct
 {
     char responce;
     double dayCost;
@@ -312,17 +313,11 @@ double hotelExpenses(int days) //use only one funct
     {
         for (int i = 1; i <= days; i++)
         {
-             dayCost = 0;
+             hotelDays += 1;
+             dayCost = 0.00;
              cout << "What were the hotel expenses for day " << i << "?: $";
              cin >> dayCost;
-             if (dayCost <= DAILY_PRICE)
-             {
-                 dayCost = 0.00;
-             }
-             else
-             {
-                total += (dayCost - DAILY_PRICE);
-             }
+             total += dayCost;
         }
         return total;
     }
@@ -424,15 +419,16 @@ double meals(int departHour, int arriveHour)
         pricebuffer = 0;
     }
 
-    if (breakfast <= 9) {breakfast = 0;}
-    else {breakfast -= 9;}
+//    if (breakfast <= 9) {breakfast = 0;}
+//    else {breakfast -= 9;}
 
-    if (lunch <= 12) {lunch = 0;}
-    else {lunch -= 12;}
+//    if (lunch <= 12) {lunch = 0;}
+//    else {lunch -= 12;}
 
-    if (dinner <= 16) {dinner = 0;}
-    else {dinner -= 16;}
+//    if (dinner <= 16) {dinner = 0;}
+//    else {dinner -= 16;}
 
     pricebuffer = (breakfast + lunch + dinner);
     return pricebuffer;
 }
+
