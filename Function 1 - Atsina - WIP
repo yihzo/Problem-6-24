@@ -1,2 +1,21 @@
 //This function requests and returns: The total amount of days spent on the trip
 //Remember to properly return your values and assign appropriate parameters.
+
+#include <iostream>
+
+using namespace std;
+
+int daysSpent()
+{
+    cout << "How many days were spent on the trip?: ";
+    int days;
+    cin >> days;
+    
+    while (days <= 0)
+    {
+        cout << "Invalid Input: please input a number greater than 0: ";
+        cin >> days;
+    }
+    
+    return days;
+}
