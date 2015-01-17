@@ -4,16 +4,16 @@
 
 using namespace std;
 
-double carRentalAmount ()                                     //please consult int main() when making parameter list//
+int carRentals()
 {
-  double carRentalFee;
-  cout << "Enter the total cost of any car rentals: $" ;           //ask user for all car rentals//
-  cin >> carRentalFee;                                              //save car rentals in carRentalFee//
+  int carRentalAmnt;
+  cout << "Enter the amount of car rentals on your trip (0 for no rentals): " ;    
+  cin >> carRentalAmnt;
 
-  while (carRentalFee < 0)                                          //Input validation//
+  while (carRentalAmnt < 0)
   {
-    cout << "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0: $" ;
+    cout << "Invalid Input; please input a number greater than or equal to 0: " ;
     cin >> carRentalFee;
   }
-  return carRentalFee;                                            //return car rentals to int main//
+  return carRentalAmnt; 
 }
