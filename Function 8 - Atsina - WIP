@@ -1,2 +1,21 @@
 //This function requests and returns: Conference/seminar registration fees
 //Remember to properly return your values and assign appropriate parameters.
+
+#include <iostream>
+
+using namespace std;
+
+double registrations()
+{
+    cout << "How much was spent for conference/seminar registrations?: $";
+    double fees;
+    cin >> fees;
+    
+    while (fees < 0)
+    {
+        cout << "Invalid Input: Please input a number greater than or equal to 0: $";
+        cin >> fees;
+    }
+    
+    return fees;
+}
