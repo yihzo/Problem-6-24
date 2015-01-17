@@ -8,7 +8,7 @@ double airfareAmount()                                         //please consult 
 {
     double airfareFee;
     
-    cout << "Enter the total cost of the air fare: " ;               //Ask user for total airfare//
+    cout << "Enter the total cost of the air fare: $" ;               //Ask user for total airfare//
     cin >> airfareFee;                                              //save airfare in variable named airfareFee//
 
     while (airfareFee < 0)                                         //Input validation//
