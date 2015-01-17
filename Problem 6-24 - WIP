@@ -1,64 +1,338 @@
-//The finalized product. Functs will be added accordingly.
 //All preprocessor directives will be located here. If your function requires it, comment it out for later use in int main().
 #include <iostream>
 #include <iomanip>
+#include <cctype>
 
 using namespace std;
 
+/*1*/ int daysSpent();
+/*2*/ int times(int);
+/*3*/ double airfareAmount();
+/*4*/ int carRentals();
+/*5*/ double milesDriven();
+/*6*/ double parkingFees(int);
+/*7*/ double taxiFees(int, int&);
+/*8*/ double registrations();
+/*9*/ double hotelExpenses(int);
+/*10*/double meals(int, int);
+
 int main()
 {
-    int days, //days spent on the trip
-        departure; //used to dim the time departed on the first day, military time
-        arrival; //used to dim the time arrived at home on the final day, military time
-        carRentals; //amount of car rentals
+    int days = 0, //days spent on the trip
+        departure = 0, //used to dim the time departed on the first day, military time
+        arrival = 0, //used to dim the time arrived at home on the final day, military time
+        carRental = 0.; //amount of car rentals
 
-    double  milesDriven, //miles driven if a private vehicle was used
-            roundTrips, //amount of any round-trip airfare, whatever that is
-            parkingFees, //fees for parking
-            taxiFees, //fees for taxiing
-            regFees, //conference/seminar registration fees
-            hotelExpenses, //expenses for lodging
-            mealCosts, //costs for each meal eaten, in total
-            permissibleExpenses, //allowed expenses per day
-            finalCost; //final value
+    int taxisUsed = 0;
 
-    days = FUNCT1(); //temp name, to be replaced by atsina's function 1
-    
-    departure = FUNCT2(0); //basically two functs in one, use an if statement
-    arrival = FUNCT2(1); //temp name, to be replaced by atsina's function 2
+    double  miles = 0.00, //miles driven if a private vehicle was used
+            roundTrips = 0.00, //amount of any round-trip airfare, whatever that is
+            parking = 0.00, //fees for parking
+            taxi = 0.00, //fees for taxiing
+            regFees = 0.00, //conference/seminar registration fees
+            hotelExpense = 0.00, //expenses for lodging
+            mealCosts = 0.00, //costs for each meal eaten, in total
+            permissibleExpenses = 0.00, //allowed expenses per day
+            finalCost = 0.00; //final value
 
-    roundTrips = FUNCT3(); //temp name, to be replaced by daniel's function 3
+    const double    PARKING_FEES = 6.00,
+                    TAXI_FEES = 10.00,
+                    HOTEL_FEES = 90.00,
+                    BREAKFAST_FEES = 9.00,
+                    LUNCH_FEES = 12.00,
+                    DINNER_FEES = 16.00;
 
-    carRentals = FUNCT4(); //temp name, to be replaced by daniel's function 4
+    days = daysSpent(); //temp name, to be replaced by atsina's function 1
+
+    departure = times(0); //basically two functs in one, use an if statement
+    arrival = times(1); //temp name, to be replaced by atsina's function 2
+
+    roundTrips = airfareAmount(); //temp name, to be replaced by daniel's function 3
+
+    carRental = carRentals(); //temp name, to be replaced by daniel's function 4
 
     if (carRentals > 0)
-        milesDriven = FUNCT5(carRentals); //temp name, to be replaced by satinder's function 5
+        miles = milesDriven(); //temp name, to be replaced by satinder's function 5
 
-    parkingFees = FUNCT6(days); //temp name, to be replaced by daniel's function 6
+    parking = parkingFees(days); //temp name, to be replaced by daniel's function 6
 
-    taxiFees = FUNCT7(days); //temp name, to be replaced by satinder's function 7
+    taxi = taxiFees(days, taxisUsed); //temp name, to be replaced by satinder's function 7
 
-    regFees = FUNCT8(); //temp name, to be replaced by atsina's function 8
+    regFees = registrations(); //temp name, to be replaced by atsina's function 8
 
-    hotelExpenses = FUNCT9(days); //temp name, to be replaced by satinder's function 9
+    hotelExpense = hotelExpenses(days); //temp name, to be replaced by satinder's function 9
 
     mealCosts = meals(departure, arrival); //funct finalized
 
-    finalCost = (roundTrips + /*carRentals*/ + milesDriven + parkingFees + taxiFees + regFees + hotelExpenses + mealCosts);
-    
+    finalCost = (roundTrips + /*carRentals*/ + miles + parking + taxi + regFees + hotelExpense + mealCosts);
+
+    permissibleExpenses = (days * PARKING_FEES) + (taxisUsed * TAXI_FEES) + (days * HOTEL_FEES);
+    if (departure < 700) {permissibleExpenses += BREAKFAST_FEES;}
+    if (departure < 1200) {permissibleExpenses += LUNCH_FEES;}
+    if (departure < 1800) {permissibleExpenses += DINNER_FEES;}
+    if (arrival > 800) {permissibleExpenses += BREAKFAST_FEES;}
+    if (arrival > 1300) {permissibleExpenses += LUNCH_FEES;}
+    if (arrival > 1900) {permissibleExpenses += DINNER_FEES;}
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
-    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"
-    if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n";}
-    
-    else {cout << "You went over the permissible expenses by $" << 
+    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n";
+    if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n" <<
+        "You could have saved a maximum of $" << permissibleExpenses << "!\n";}
+
+    else {cout << "You went over the permissible expenses by $" <<
     setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";}
 
     return 0;
 }
 
+int daysSpent()
+{
+    cout << "How many days were spent on the trip?: ";
+    int days;
+    cin >> days;
+
+    while (days <= 0)
+    {
+        cout << "Invalid Input: please input a number greater than 0: ";
+        cin >> days;
+    }
+
+    return days;
+}
+
+int times(int departOrArrive)
+{
+    int timething; //used for time
+    int othertimething; //used for time
+    if (departOrArrive == 0) //departure check
+    {
+        cout << "What time did you depart on the first day? \n" <<
+        "Please input the time like military time: "; //sorry but i had no other idea on how to make this work
+        cin >> timething; //request timething
+        othertimething = (timething % 100);
+
+        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist or invalid
+        {
+            cout << "Invalid time. Please input a valid time: ";
+            cin >> timething;
+            othertimething = (timething % 100);
+        }
+        return timething;
+    }
+
+    else if (departOrArrive == 1) //arrive check
+    {
+        cout << "What time did you arrive on the last day? \n" <<
+        "Please input the time like military time: "; //sorry but i had no other idea on how to make this work
+        cin >> timething; //request timething
+        othertimething = (timething % 100);
+
+        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist
+        {
+            cout << "Invalid time. Please input a valid time: ";
+            cin >> timething;
+            othertimething = (timething % 100);
+        }
+        return timething;
+    }
+
+    else
+    {
+        cout << "How did you get here and why? Are you trying to break me?"; //error handler
+        return 0;
+    }
+}
+
+double airfareAmount()
+{
+    double airfareFee;
+
+    cout << "Enter the total cost of the air fare: $";
+    cin >> airfareFee;
+
+    while (airfareFee < 0)
+    {
+        cout << "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0: " ;
+        cin >> airfareFee;
+    }
+
+    return airfareFee;
+}
+
+int carRentals()
+{
+  int carRentalAmnt;
+  cout << "Enter the amount of car rentals on your trip (0 for no rentals): " ;
+  cin >> carRentalAmnt;
+
+  while (carRentalAmnt < 0)
+  {
+    cout << "Invalid Input; please input a number greater than or equal to 0: " ;
+    cin >> carRentalAmnt;
+  }
+  return carRentalAmnt;
+}
+
+double milesDriven() //use only one funct
+{
+    char responce;
+    double miles;
+    double total;
+    const double MILES_PRICE = .27;
+
+    cout << "Did you use a private vehicle? (Y or N): ";
+    cin >> responce;
+    responce = toupper(responce);
+
+    while (responce != 'Y' && responce != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> responce;
+        responce = toupper(responce);
+    }
+
+    if (responce == 'Y')
+    {
+        cout << "How many miles were driven? :";
+        cin >> miles;
+        total = miles * MILES_PRICE;
+        return total;
+    }
+
+    else if (responce == 'N') {return 0;}
+}
+
+double parkingFees(int days)
+{
+    double parking = 0.00; //money spent today
+    double parkingTotal = 0.00; //money spent in total
+    double moneyPermissible = 10.00; //money allowed by the company
+    for (int i = 1; i <= days; i++)
+        {
+            parking = 0.00; //clear parking
+            cout << "How much money was spent for parking on day " << i << "?: $";
+            cin >> parking; //request parking
+            while (parking < 0)
+                {
+                    cout << "Invalid input. Please input a number greater than 0: $";
+                    cin >> parking;
+                }
+            parking -= moneyPermissible; //subtract maximum money allowed
+            if (parking < 0) {parking = 0;} //reset to 0 if parking < moneypermissible
+            parkingTotal += parking; //add to the total
+        }
+    return parkingTotal;
+}
+
+double taxiFees(int days, int &taxisUsed)
+{
+    char taxiBool; //used in a cin check
+    double moneySpent = 0.00; //total money spent
+    double moneyPermissible = 10.00; //money allowed by the company
+    double moneySpentToday = 0.00; //goat value
+    cout << "Did you use a taxi during the trip? Y/N: ";
+    cin >> taxiBool;
+    taxiBool = toupper(taxiBool);
+
+    while (taxiBool != 'Y' && taxiBool != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> taxiBool;
+        taxiBool = toupper(taxiBool);
+    }
+
+    if (taxiBool == 'Y')
+    {
+        for (int i = 1; i <= days; i++)
+            {
+                moneySpentToday = 0.00; //clear moneySpentToday
+                taxiBool = NULL; //clear taxiBool for later checks
+                cout << "Was a taxi used for day " << i << "? Y/N: ";
+                cin >> taxiBool;
+                taxiBool = toupper(taxiBool);
+                while (taxiBool != 'Y' && taxiBool != 'N')
+                {
+                    cout << "Invalid input. Please input Y or N: ";
+                    cin >> taxiBool;
+                    taxiBool = toupper(taxiBool);
+                }
+
+                if (taxiBool == 'Y')
+                {
+                    taxisUsed += 1;
+                    cout << "How much was spent for taxi fees?: $";
+                    cin >> moneySpentToday;
+                    while (moneySpentToday <= 0.00)
+                    {
+                        cout << "Invalid input. Please input a number greater than 0: $";
+                        cin >> moneySpentToday;
+                    }
+                }
+                moneySpentToday -= moneyPermissible;
+                if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
+                moneySpent += moneySpentToday;
+            }
+    }
+    return moneySpent;
+}
+
+double registrations()
+{
+    cout << "How much was spent for conference/seminar registrations?: $";
+    double fees;
+    cin >> fees;
+
+    while (fees < 0)
+    {
+        cout << "Invalid Input: Please input a number greater than or equal to 0: $";
+        cin >> fees;
+    }
+
+    return fees;
+}
+
+double hotelExpenses(int days) //use only one funct
+{
+    char responce;
+    double dayCost;
+    double total;
+    const double DAILY_PRICE = 90.00;
+
+    cout << "Did you stay in a hotel during your trip? (Y or N): ";
+    cin >> responce;
+    responce = toupper(responce);
+
+    while (responce != 'Y' && responce != 'N')
+    {
+        cout << "Invalid input. Please input Y or N: ";
+        cin >> responce;
+        responce = toupper(responce);
+    }
+
+    if (responce == 'Y')
+    {
+        for (int i = 1; i <= days; i++)
+        {
+             dayCost = 0;
+             cout << "What were the hotel expenses for day " << i << "?: $";
+             cin >> dayCost;
+             if (dayCost <= DAILY_PRICE)
+             {
+                 dayCost = 0.00;
+             }
+             else
+             {
+                total += (dayCost - DAILY_PRICE);
+             }
+        }
+        return total;
+    }
+
+    else if (responce == 'N') {return 0;}
+
+}
+
 double meals(int departHour, int arriveHour)
 {
-    int departHour, arriveHour;
     double breakfast, lunch, dinner;
     double pricebuffer;
     breakfast = 0;
@@ -105,7 +379,7 @@ double meals(int departHour, int arriveHour)
         dinner += pricebuffer;
         pricebuffer = 0;
     }
-    
+
 ////////////////////////////////////////////////////////////////////////////
 
     if (arriveHour > 800) //last day breakfast checker
