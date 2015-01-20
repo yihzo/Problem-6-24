@@ -6,14 +6,14 @@ using namespace std;
 
 int carRentals()
 {
-  int carRentalAmnt ;
+  int carRentalAmnt;
   cout << "Enter the amount of car rentals on your trip (0 for no rentals): " ;    
-  cin >> carRentalAmnt ;
+  cin >> carRentalAmnt;
 
   while (carRentalAmnt < 0)
   {
-    cout << "Invalid Input; please input a number greater than or equal to 0 or more: " ;
-    cin >> carRentalAmnt ;
+    cout << "Invalid Input; please input a number greater than or equal to 0: " ;
+    cin >> carRentalAmnt;
   }
-  return carRentalAmnt ; 
+  return carRentalAmnt; 
 }
