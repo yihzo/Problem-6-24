@@ -43,49 +43,55 @@ int main()
                     LUNCH_FEES = 12.00,
                     DINNER_FEES = 16.00;
 
-    days = daysSpent(); //temp name, to be replaced by atsina's function 1
+    days = daysSpent(); 
 
     departure = times(0); //basically two functs in one, use an if statement
-    arrival = times(1); //temp name, to be replaced by atsina's function 2
+    arrival = times(1); 
 
-    roundTrips = airfareAmount(); //temp name, to be replaced by daniel's function 3
+    roundTrips = airfareAmount(); 
 
-    carRental = carRentals(); //temp name, to be replaced by daniel's function 4
+    carRental = carRentals(); 
 
     if (carRentals > 0)
-        miles = milesDriven(); //temp name, to be replaced by satinder's function 5
+        miles = milesDriven(); 
 
-    parking = parkingFees(days); //temp name, to be replaced by daniel's function 6
+    parking = parkingFees(days); 
 
-    taxi = taxiFees(days, taxisUsed); //temp name, to be replaced by satinder's function 7
+    taxi = taxiFees(days, taxisUsed); 
 
-    regFees = registrations(); //temp name, to be replaced by atsina's function 8
+    regFees = registrations(); 
 
-    hotelExpense = hotelExpenses(days, hotelDays); //temp name, to be replaced by satinder's function 9
+    hotelExpense = hotelExpenses(days, hotelDays); 
 
-    mealCosts = meals(departure, arrival); //funct finalized
+    mealCosts = meals(departure, arrival); 
 
-    finalCost = (roundTrips + /*carRentals*/ + miles + parking + taxi + regFees + hotelExpense + mealCosts);
+    finalCost = (roundTrips + miles + parking + taxi + regFees + hotelExpense + mealCosts); //checks for the total cost by
+    //adding up all the previous variables accordingly
 
-    permissibleExpenses = (days * PARKING_FEES) + (taxisUsed * TAXI_FEES) + (days * HOTEL_FEES);
+    permissibleExpenses = (days * PARKING_FEES) + (taxisUsed * TAXI_FEES) + (days * HOTEL_FEES); //checks for the total cost
+    //that could be covered by the company
+    
+    /*all below are situational meal fees*/
     if (departure < 700) {permissibleExpenses += BREAKFAST_FEES;}
     if (departure < 1200) {permissibleExpenses += LUNCH_FEES;}
     if (departure < 1800) {permissibleExpenses += DINNER_FEES;}
     if (arrival > 800) {permissibleExpenses += BREAKFAST_FEES;}
     if (arrival > 1300) {permissibleExpenses += LUNCH_FEES;}
     if (arrival > 1900) {permissibleExpenses += DINNER_FEES;}
+    /*end*/
+    
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
-    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n";
+    cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"; //couts how much you spent and the permissible costs
     if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n" <<
-        "You saved $" << (permissibleExpenses - finalCost) << "!\n";}
+        "You saved $" << (permissibleExpenses - finalCost) << "!\n";} //couts if you are under the permissible expenses
 
     else {cout << "You went over the permissible expenses by $" <<
-    setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";}
+    setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";} //couts if you are over
 
     return 0;
 }
 
-int daysSpent()
+int daysSpent() //requests days spent on the trip
 {
     cout << "How many days were spent on the trip?: ";
     int days;
@@ -100,7 +106,7 @@ int daysSpent()
     return days;
 }
 
-int times(int departOrArrive)
+int times(int departOrArrive) //requests the times departed and arrived
 {
     int timething; //used for time
     int othertimething; //used for time
@@ -143,7 +149,7 @@ int times(int departOrArrive)
     }
 }
 
-double airfareAmount()
+double airfareAmount() //requests the cost for airfare
 {
     double airfareFee;
 
@@ -159,7 +165,7 @@ double airfareAmount()
     return airfareFee;
 }
 
-int carRentals()
+int carRentals() //requests the amount of car rentals
 {
   int carRentalAmnt;
   cout << "Enter the amount of car rentals on your trip (0 for no rentals): " ;
@@ -173,7 +179,7 @@ int carRentals()
   return carRentalAmnt;
 }
 
-double milesDriven() //use only one funct
+double milesDriven() //requests the amount of miles driven, if a private vehicle was used, and calculates a cost per mile
 {
     char responce;
     double miles;
@@ -202,7 +208,7 @@ double milesDriven() //use only one funct
     else if (responce == 'N') {return 0;}
 }
 
-double parkingFees(int days)
+double parkingFees(int days) //requests the fees for parking per day
 {
     double parking = 0.00; //money spent today
     double parkingTotal = 0.00; //money spent in total
@@ -224,7 +230,7 @@ double parkingFees(int days)
     return parkingTotal;
 }
 
-double taxiFees(int days, int &taxisUsed)
+double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appliccable 
 {
     char taxiBool; //used in a cin check
     double moneySpent = 0.00; //total money spent
@@ -276,7 +282,7 @@ double taxiFees(int days, int &taxisUsed)
     return moneySpent;
 }
 
-double registrations()
+double registrations() //requests fees spent for registrations
 {
     cout << "How much was spent for conference/seminar registrations?: $";
     double fees;
@@ -291,7 +297,7 @@ double registrations()
     return fees;
 }
 
-double hotelExpenses(int days, int &hotelDays) //use only one funct
+double hotelExpenses(int days, int &hotelDays) //requests fees for hotel lodging
 {
     char responce;
     double dayCost;
@@ -326,7 +332,7 @@ double hotelExpenses(int days, int &hotelDays) //use only one funct
 
 }
 
-double meals(int departHour, int arriveHour)
+double meals(int departHour, int arriveHour) //requests prices of meals, according to times departed and arrived
 {
     double breakfast, lunch, dinner;
     double pricebuffer;
