@@ -21,10 +21,13 @@ int main()
     int days = 0, //days spent on the trip
         departure = 0, //used to dim the time departed on the first day, military time
         arrival = 0, //used to dim the time arrived at home on the final day, military time
-        carRental = 0.; //amount of car rentals
-
-    int taxisUsed = 0,
+        carRental = 0, //amount of car rentals
+        taxisUsed = 0,
         hotelDays = 0;
+
+    const int   BREAKFAST_CHECK[2] = {700, 800}, //departure and arrival respectively
+                LUNCH_CHECK[2] = {1200, 1300},
+                DINNER_CHECK[2] = {1800, 1900};
 
     double  miles = 0.00, //miles driven if a private vehicle was used
             roundTrips = 0.00, //amount of any round-trip airfare, whatever that is
@@ -72,21 +75,27 @@ int main()
     //that could be covered by the company
 
     /*all below are situational meal fees*/
-    if (departure < 700) {permissibleExpenses += BREAKFAST_FEES;}
-    if (departure < 1200) {permissibleExpenses += LUNCH_FEES;}
-    if (departure < 1800) {permissibleExpenses += DINNER_FEES;}
-    if (arrival > 800) {permissibleExpenses += BREAKFAST_FEES;}
-    if (arrival > 1300) {permissibleExpenses += LUNCH_FEES;}
-    if (arrival > 1900) {permissibleExpenses += DINNER_FEES;}
+    if (departure < BREAKFAST_CHECK[0]) {permissibleExpenses += BREAKFAST_FEES;}
+    if (departure < LUNCH_CHECK[0]) {permissibleExpenses += LUNCH_FEES;}
+    if (departure < DINNER_CHECK[0]) {permissibleExpenses += DINNER_FEES;}
+    if (arrival > BREAKFAST_CHECK[1]) {permissibleExpenses += BREAKFAST_FEES;}
+    if (arrival > LUNCH_CHECK[1]) {permissibleExpenses += LUNCH_FEES;}
+    if (arrival > DINNER_CHECK[1]) {permissibleExpenses += DINNER_FEES;}
     /*end*/
 
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
     cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"; //couts how much you spent and the permissible costs
-    if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n" <<
-        "You saved $" << (permissibleExpenses - finalCost) << "!\n";} //couts if you are under the permissible expenses
+    if (finalCost < permissibleExpenses)
+        {
+            cout << "All expenses were covered by the company.\n" <<
+            "Remaining funds: $" << (permissibleExpenses - finalCost) << endl;
+        } //couts if you are under the permissible expenses
 
-    else {cout << "You went over the permissible expenses by $" <<
-    setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";} //couts if you are over
+    else
+        {
+            cout << "You went over the permissible expenses by $" <<
+            setprecision(2) << fixed << (finalCost - permissibleExpenses) << ".\n";
+        } //couts if you are over
 
     return 0;
 }
