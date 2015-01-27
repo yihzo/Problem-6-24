@@ -43,34 +43,34 @@ int main()
                     LUNCH_FEES = 12.00,
                     DINNER_FEES = 16.00;
 
-    days = daysSpent(); 
+    days = daysSpent();
 
     departure = times(0); //basically two functs in one, use an if statement
-    arrival = times(1); 
+    arrival = times(1);
 
-    roundTrips = airfareAmount(); 
+    roundTrips = airfareAmount();
 
-    carRental = carRentals(); 
+    carRental = carRentals();
 
     if (carRentals > 0)
-        miles = milesDriven(); 
+        miles = milesDriven();
 
-    parking = parkingFees(days); 
+    parking = parkingFees(days);
 
-    taxi = taxiFees(days, taxisUsed); 
+    taxi = taxiFees(days, taxisUsed);
 
-    regFees = registrations(); 
+    regFees = registrations();
 
-    hotelExpense = hotelExpenses(days, hotelDays); 
+    hotelExpense = hotelExpenses(days, hotelDays);
 
-    mealCosts = meals(departure, arrival); 
+    mealCosts = meals(departure, arrival);
 
     finalCost = (roundTrips + miles + parking + taxi + regFees + hotelExpense + mealCosts); //checks for the total cost by
     //adding up all the previous variables accordingly
 
     permissibleExpenses = (days * PARKING_FEES) + (taxisUsed * TAXI_FEES) + (days * HOTEL_FEES); //checks for the total cost
     //that could be covered by the company
-    
+
     /*all below are situational meal fees*/
     if (departure < 700) {permissibleExpenses += BREAKFAST_FEES;}
     if (departure < 1200) {permissibleExpenses += LUNCH_FEES;}
@@ -79,7 +79,7 @@ int main()
     if (arrival > 1300) {permissibleExpenses += LUNCH_FEES;}
     if (arrival > 1900) {permissibleExpenses += DINNER_FEES;}
     /*end*/
-    
+
     cout << "This trip will cost you $" << setprecision(2) << fixed << finalCost << ".\n";
     cout << "The permissible expenses allowed for this trip is $" << setprecision(2) << fixed << permissibleExpenses << ".\n"; //couts how much you spent and the permissible costs
     if (finalCost < permissibleExpenses) {cout << "All expenses were covered by the company.\n" <<
@@ -99,7 +99,7 @@ int daysSpent() //requests days spent on the trip
 
     while (days <= 0)
     {
-        cout << "Invalid Input: please input a number greater than 0: ";
+        cout << "Invalid input; please input a number greater than 0: " ;
         cin >> days;
     }
 
@@ -110,44 +110,34 @@ int times(int departOrArrive) //requests the times departed and arrived
 {
     int timething; //used for time
     int othertimething; //used for time
-    if (departOrArrive == 0) //departure check
+    const int LARGEST_VALID_TIME = 2359;
+    const int MINUTE = 60;
+    const int MILITARY_TO_HOUR = 100;
+    switch (departOrArrive) //sorry but i had no other idea on how to make this work
     {
-        cout << "What time did you depart on the first day? \n" <<
-        "Please input the time like military time: "; //sorry but i had no other idea on how to make this work
-        cin >> timething; //request timething
-        othertimething = (timething % 100);
+        case 0:         cout << "What time did you depart on the first day? \n";
+                        break;
+        case 1:         cout << "What time did you arrive on the last day? \n";
+                        break;
+        default:        cout << "VIOLATOR AND SUBJECT TO\n" <<
+                        "SEVERE PENALTIES AND WILL\n" <<
+                        "BE PROSECUTEDT TO THE FULL\n" <<
+                        "EXTENT OF THE JAM\n";
+                        break;  //error handler, since you shouldn't be here
+    }
+    cout << "Please input the time like you would military time: ";
+    cin >> timething; //request timething
+    othertimething = (timething % MILITARY_TO_HOUR);
 
-        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist or invalid
-        {
-            cout << "Invalid time. Please input a valid time: ";
-            cin >> timething;
-            othertimething = (timething % 100);
-        }
-        return timething;
+    while (timething < 0 || timething > LARGEST_VALID_TIME || othertimething >= MINUTE) //if time is not exist or invalid
+    {
+        cout << "Invalid time; please input a valid military-time format time: ";
+        cin >> timething;
+        othertimething = (timething % MILITARY_TO_HOUR);
+    }
+    return timething;
     }
 
-    else if (departOrArrive == 1) //arrive check
-    {
-        cout << "What time did you arrive on the last day? \n" <<
-        "Please input the time like military time: "; //sorry but i had no other idea on how to make this work
-        cin >> timething; //request timething
-        othertimething = (timething % 100);
-
-        while (timething < 0 || timething > 2359 || othertimething >= 60) //if time is not exist
-        {
-            cout << "Invalid time. Please input a valid time: ";
-            cin >> timething;
-            othertimething = (timething % 100);
-        }
-        return timething;
-    }
-
-    else
-    {
-        cout << "How did you get here and why? Are you trying to break me?"; //error handler
-        return 0;
-    }
-}
 
 double airfareAmount() //requests the cost for airfare
 {
@@ -158,7 +148,7 @@ double airfareAmount() //requests the cost for airfare
 
     while (airfareFee < 0)
     {
-        cout << "THAT NUMBER IS LESS THAN 0! Try inputing a number more than 0: " ;
+        cout << "Invalid input; please input a number greater than or equal to 0: " ;
         cin >> airfareFee;
     }
 
@@ -168,12 +158,12 @@ double airfareAmount() //requests the cost for airfare
 int carRentals() //requests the amount of car rentals
 {
   int carRentalAmnt;
-  cout << "Enter the amount of car rentals on your trip (0 for no rentals): " ;
+  cout << "Enter the amount of car rentals on your trip (0 for no rentals): ";
   cin >> carRentalAmnt;
 
   while (carRentalAmnt < 0)
   {
-    cout << "Invalid Input; please input a number greater than or equal to 0: " ;
+    cout << "Invalid input; please input a number greater than or equal to 0: ";
     cin >> carRentalAmnt;
   }
   return carRentalAmnt;
@@ -192,7 +182,7 @@ double milesDriven() //requests the amount of miles driven, if a private vehicle
 
     while (responce != 'Y' && responce != 'N')
     {
-        cout << "Invalid input. Please input Y or N: ";
+        cout << "Invalid input; please input Y or N: ";
         cin >> responce;
         responce = toupper(responce);
     }
@@ -201,6 +191,11 @@ double milesDriven() //requests the amount of miles driven, if a private vehicle
     {
         cout << "How many miles were driven? :";
         cin >> miles;
+        while (miles < 0)
+        {
+            cout << "Invalid input; please input a number greater than or equal to 0: ";
+            cin >> miles;
+        }
         total = miles * MILES_PRICE;
         return total;
     }
@@ -223,14 +218,12 @@ double parkingFees(int days) //requests the fees for parking per day
                     cout << "Invalid input. Please input a number greater than 0: $";
                     cin >> parking;
                 }
-//            parking -= moneyPermissible; //subtract maximum money allowed
-//            if (parking < 0) {parking = 0;} //reset to 0 if parking < moneypermissible
             parkingTotal += parking; //add to the total
         }
     return parkingTotal;
 }
 
-double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appliccable 
+double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appliccable
 {
     char taxiBool; //used in a cin check
     double moneySpent = 0.00; //total money spent
@@ -242,7 +235,7 @@ double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appl
 
     while (taxiBool != 'Y' && taxiBool != 'N')
     {
-        cout << "Invalid input. Please input Y or N: ";
+        cout << "Invalid input; please input Y or N: ";
         cin >> taxiBool;
         taxiBool = toupper(taxiBool);
     }
@@ -258,7 +251,7 @@ double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appl
                 taxiBool = toupper(taxiBool);
                 while (taxiBool != 'Y' && taxiBool != 'N')
                 {
-                    cout << "Invalid input. Please input Y or N: ";
+                    cout << "Invalid input; please input Y or N: ";
                     cin >> taxiBool;
                     taxiBool = toupper(taxiBool);
                 }
@@ -268,14 +261,16 @@ double taxiFees(int days, int &taxisUsed) //requests the fees for taxis, if appl
                     taxisUsed += 1;
                     cout << "How much was spent for taxi fees?: $";
                     cin >> moneySpentToday;
-                    while (moneySpentToday <= 0.00)
+                    while (moneySpentToday < 0.00)
                     {
-                        cout << "Invalid input. Please input a number greater than 0: $";
+                        cout << "Invalid Input: Please input a number greater than or equal to 0: $";
                         cin >> moneySpentToday;
                     }
+                    if (moneySpentToday == 0)
+                    {
+                        taxisUsed -= 1; //since you were a baka and said you used a taxi when you didn't
+                    }
                 }
-//                moneySpentToday -= moneyPermissible;
-//                if (moneySpentToday < 0.00) {moneySpentToday = 0.00;}
                 moneySpent += moneySpentToday;
             }
     }
@@ -290,7 +285,7 @@ double registrations() //requests fees spent for registrations
 
     while (fees < 0)
     {
-        cout << "Invalid Input: Please input a number greater than or equal to 0: $";
+        cout << "Invalid input; please input a number greater than or equal to 0: $";
         cin >> fees;
     }
 
@@ -302,7 +297,6 @@ double hotelExpenses(int days, int &hotelDays) //requests fees for hotel lodging
     char responce;
     double dayCost;
     double total;
-    const double DAILY_PRICE = 90.00;
 
     cout << "Did you stay in a hotel during your trip? (Y or N): ";
     cin >> responce;
@@ -310,7 +304,7 @@ double hotelExpenses(int days, int &hotelDays) //requests fees for hotel lodging
 
     while (responce != 'Y' && responce != 'N')
     {
-        cout << "Invalid input. Please input Y or N: ";
+        cout << "Invalid input; please input Y or N: ";
         cin >> responce;
         responce = toupper(responce);
     }
@@ -323,6 +317,15 @@ double hotelExpenses(int days, int &hotelDays) //requests fees for hotel lodging
              dayCost = 0.00;
              cout << "What were the hotel expenses for day " << i << "?: $";
              cin >> dayCost;
+             while (dayCost < 0)
+             {
+                 cout << "Invalid input; please input a number greater than or equal to 0: $" ;
+                 cin >> dayCost;
+             }
+            if (dayCost == 0)
+            {
+                hotelDays -= 1; //since you were a baka and said you used a hotel when you didn't
+            }
              total += dayCost;
         }
         return total;
@@ -345,8 +348,7 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for breakfast on the first day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         breakfast += pricebuffer;
@@ -359,8 +361,7 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for lunch on the first day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         lunch += pricebuffer;
@@ -373,8 +374,7 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for dinner on the first day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         dinner += pricebuffer;
@@ -389,8 +389,7 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for breakfast on the last day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         breakfast += pricebuffer;
@@ -403,8 +402,7 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for lunch on the last day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         lunch += pricebuffer;
@@ -417,22 +415,12 @@ double meals(int departHour, int arriveHour) //requests prices of meals, accordi
         cin >> pricebuffer;
         while (pricebuffer < 0)
         {
-            cout << "INVALID INPUT - PLEASE RE-INPUT DATA\n";
-            cout << "How much was spent for dinner on the last day?: $";
+            cout << "Invalid input; please input a number greater than or equal to 0: $" ;
             cin >> pricebuffer;
         }
         dinner += pricebuffer;
         pricebuffer = 0;
     }
-
-//    if (breakfast <= 9) {breakfast = 0;}
-//    else {breakfast -= 9;}
-
-//    if (lunch <= 12) {lunch = 0;}
-//    else {lunch -= 12;}
-
-//    if (dinner <= 16) {dinner = 0;}
-//    else {dinner -= 16;}
 
     pricebuffer = (breakfast + lunch + dinner);
     return pricebuffer;
